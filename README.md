@@ -59,6 +59,23 @@ The User Management API is a NestJS-based service designed for managing user ava
    ```bash
    npm test
    ```
+## Deployment
+
+### Docker
+
+To deploy the application using Docker, create a Docker image and run the container using the included Dockerfile.
+
+### Cloud Deployment
+
+You can deploy the application using various cloud services:
+
+#### Google Cloud Run
+
+Google Cloud Run allows you to deploy and manage containerized applications. Follow the [Google Cloud Run documentation](https://cloud.google.com/run/docs) for details on deployment.
+
+#### AWS Lambda
+
+If you prefer to avoid using containers, you can deploy the application on AWS Lambda. Utilize AWS SAM or the Serverless Framework (SLS) for this purpose. For guidance on deploying with AWS Lambda, refer to the [AWS SAM documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/) or the [Serverless Framework documentation](https://www.serverless.com/framework/docs/).
 
 ## Documentation
 
