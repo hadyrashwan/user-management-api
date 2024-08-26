@@ -35,17 +35,22 @@ export class UserAvatarService {
 
   async SaveAvatarToDB(userId: number, avatarUrl: string): Promise<string> {
     const response = await this.fetchAvatar(avatarUrl);
-    const hash = 'sha256'; // crypto.createHash('sha256').update(response).digest('hex');
+    const hash = crypto.createHash('sha256').update(response).digest('hex');
     const imagePath = path.join(this.tempDirectory, `${userId}.png`);
     await fs.writeFile(imagePath, response);
 
-    await new this.avatarModel({
+    const model = this.createModel({
       userId,
       hash,
       imagePath,
       image: response,
-    }).save();
+    });
+    await model.save();
+
     return response.toString('base64');
+  }
+  private createModel(dto: IUserAvatar) {
+    return new this.avatarModel(dto);
   }
 
   private async ensureDirectoryExists(): Promise<void> {
