@@ -11,6 +11,9 @@ export class UserAvatar extends Document {
 
   @Prop({ required: true })
   imagePath: string;
+
+  @Prop({ required: true })
+  image: Buffer;
 }
 
 export const UserAvatarSchema = SchemaFactory.createForClass(UserAvatar);

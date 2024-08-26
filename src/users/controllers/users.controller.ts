@@ -22,8 +22,12 @@ export class UserController {
 
   @Get(':userId/avatar')
   async getAvatar(@Param('userId') userId: string) {
-    const avatarUrl = `https://reqres.in/api/users/${userId}/avatar`;
-    return this.userAvatarService.getAvatar(userId, avatarUrl);
+    const avatar = await this.userAvatarService.getAvatarFromDB(userId);
+    if (avatar.found) {
+      return avatar.image;
+    }
+    const user = await this.userService.findOne(userId);
+    return this.userAvatarService.SaveAvatarToDB(userId, user.avatar);
   }
 
   @Delete(':userId/avatar')

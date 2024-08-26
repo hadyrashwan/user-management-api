@@ -8,7 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IUser } from '../interfaces/user.interface';
 import { User } from '../entities/user.entity';
-import { CreateUserDto, GetUserDto } from '../dto/create-user.dto';
+import { CreateUserDto, GetUserDto } from '../dto';
 import * as nodemailer from 'nodemailer';
 import axios from 'axios';
 import { ChannelWrapper } from 'amqp-connection-manager';

@@ -7,7 +7,13 @@ export interface IUser {
 }
 
 export interface IUserAvatar {
-  readonly userId: string;
+  readonly id: string;
   readonly hash: string;
   readonly imagePath: string;
+  readonly image: Buffer;
+}
+
+export interface IFindAvatar {
+  found: boolean;
+  image?: string;
 }
