@@ -81,6 +81,19 @@ If you prefer to avoid using containers, you can deploy the application on AWS L
 
 API documentation is available in the `open-api.json` file located in the root directory of the project. This file describes the API endpoints, request and response formats, and other details.
 
+## Screenshots
+
+Here are some screenshots demonstrating the working functionality of SFTP and RabbitMQ:
+
+### SFTP
+
+![SFTP Screenshot](/screenshots/sftp.png)
+
+### RabbitMQ
+
+![RabbitMQ Screenshot](/screenshots/rabbitmq.png)
+
+
 ## Contact
 
 For any questions or feedback, please contact [h2rashwan@gmail.com](mailto:h2rashwan@gmail.com).
