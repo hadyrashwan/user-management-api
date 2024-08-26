@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Param, Body, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Body,
+  Delete,
+  NotFoundException,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -40,7 +48,7 @@ export class UserController {
     type: GetUserDto,
   })
   @ApiResponse({ status: 404, description: 'User not found.' })
-  async findOne(@Param('userId') userId: string) {
+  async findOne(@Param('userId') userId: number) {
     return this.userService.findOne(userId);
   }
 
@@ -52,7 +60,7 @@ export class UserController {
     description: 'Return the avatar image in base64 format.',
   })
   @ApiResponse({ status: 404, description: 'Avatar not found.' })
-  async getAvatar(@Param('userId') userId: string) {
+  async getAvatar(@Param('userId') userId: number) {
     const avatar = await this.userAvatarService.getAvatarFromDB(userId);
     if (avatar.found) {
       return avatar.image;
@@ -67,6 +75,11 @@ export class UserController {
   @ApiResponse({ status: 200, description: 'Avatar successfully deleted.' })
   @ApiResponse({ status: 404, description: 'Avatar not found.' })
   async deleteAvatar(@Param('userId') userId: string) {
-    return this.userAvatarService.deleteAvatar(userId);
+    const response = await this.userAvatarService.deleteAvatar(userId);
+    if (response) {
+      return { success: true, message: 'Avatar successfully deleted.' };
+    } else {
+      throw new NotFoundException('Avatar not found.');
+    }
   }
 }

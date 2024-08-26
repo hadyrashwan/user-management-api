@@ -24,7 +24,7 @@ export class UserAvatarService {
     this.ensureDirectoryExists();
   }
 
-  async getAvatarFromDB(userId: string): Promise<IFindAvatar> {
+  async getAvatarFromDB(userId: number): Promise<IFindAvatar> {
     const avatar = await this.avatarModel.findOne({ userId });
     if (avatar) {
       return { found: true, image: avatar.image.toString('base64') };
@@ -33,7 +33,7 @@ export class UserAvatarService {
     }
   }
 
-  async SaveAvatarToDB(userId: string, avatarUrl: string): Promise<string> {
+  async SaveAvatarToDB(userId: number, avatarUrl: string): Promise<string> {
     const response = await this.fetchAvatar(avatarUrl);
     const hash = crypto.createHash('sha256').update(response).digest('hex');
     const imagePath = path.join(this.tempDirectory, `${userId}.png`);
@@ -56,12 +56,16 @@ export class UserAvatarService {
     }
   }
 
-  async deleteAvatar(userId: string): Promise<void> {
+  async deleteAvatar(userId: string): Promise<{ success: boolean }> {
     const avatar = await this.avatarModel.findOne({ userId });
-    if (!avatar) throw new NotFoundException('Avatar not found');
+
+    if (!avatar) {
+      return { success: false };
+    }
 
     await fs.unlink(avatar.imagePath);
     await avatar.deleteOne();
+    return { success: true };
   }
 
   async fetchUserById(userId: string): Promise<GetUserDto> {

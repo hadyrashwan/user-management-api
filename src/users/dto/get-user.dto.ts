@@ -8,5 +8,5 @@ export class GetUserDto extends CreateUserDto {
     description: 'User id',
     example: 102,
   })
-  readonly id: string;
+  readonly id: number;
 }

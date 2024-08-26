@@ -32,7 +32,7 @@ export class UserService {
     return user;
   }
 
-  async findOne(userId: string): Promise<GetUserDto> {
+  async findOne(userId: number): Promise<GetUserDto> {
     try {
       const response = await axios.get(`https://reqres.in/api/users/${userId}`);
       return response.data.data as GetUserDto;

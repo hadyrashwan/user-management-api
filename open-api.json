@@ -184,7 +184,7 @@
             "example": "https://example.com/avatar.png"
           },
           "id": {
-            "type": "string",
+            "type": "number",
             "description": "User id",
             "example": 102
           }
