@@ -8,7 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IUser } from '../interfaces/user.interface';
 import { User } from '../entities/user.entity';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { CreateUserDto, GetUserDto } from '../dto/create-user.dto';
 import * as nodemailer from 'nodemailer';
 import axios from 'axios';
 import { ChannelWrapper } from 'amqp-connection-manager';
@@ -32,10 +32,17 @@ export class UserService {
     return user;
   }
 
-  async findOne(userId: string): Promise<IUser> {
-    const user = await this.userModel.findById(userId);
-    if (!user) throw new NotFoundException('User not found');
-    return user;
+  async findOne(userId: string): Promise<GetUserDto> {
+    try {
+      const response = await axios.get(`https://reqres.in/api/users/${userId}`);
+      return response.data.data as GetUserDto;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        throw new NotFoundException('User not found');
+      }
+
+      throw error;
+    }
   }
 
   private async sendEmail(email: string) {
