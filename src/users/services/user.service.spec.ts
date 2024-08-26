@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { UserService } from './user.service';
 import { User } from '../entities/user.entity';
 import { CreateUserDto, GetUserDto } from '../dto';
@@ -14,7 +13,6 @@ jest.mock('nodemailer');
 
 describe('UserService', () => {
   let service: UserService;
-  let model: Model<IUser>;
   let channelWrapper: any;
 
   const mockUser: IUser = {
@@ -46,7 +44,7 @@ describe('UserService', () => {
             find: jest.fn().mockReturnThis(),
             create: jest.fn().mockResolvedValue(mockUser),
             save: jest.fn().mockResolvedValue(mockUser),
-            exec: jest.fn().mockResolvedValue(mockUser), // Ensure exec is mocked if used
+            exec: jest.fn().mockResolvedValue(mockUser),
             constructor: jest.fn().mockResolvedValue(mockUser),
           },
         },
@@ -60,7 +58,6 @@ describe('UserService', () => {
     }).compile();
 
     service = module.get<UserService>(UserService);
-    model = module.get<Model<IUser>>(getModelToken(User.name));
     channelWrapper = module.get('RABBITMQ_CHANNEL');
   });
 

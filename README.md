@@ -1,85 +1,70 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# User Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+The User Management API is a NestJS-based service designed for managing user avatars. It provides functionalities to interact with user avatars, including saving, retrieving, and deleting avatars, and fetching user details from an external API.
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Get Avatar from Database:** Retrieve the user's avatar from MongoDB and return it in base64 format.
+- **Save Avatar to Database:** Download an avatar image from a provided URL, save it to the filesystem, and store metadata in MongoDB.
+- **Delete Avatar:** Remove the avatar image from the filesystem and delete its metadata from MongoDB.
+- **Fetch User by ID:** Obtain user details from an external API.
 
-## Project setup
+## Installation
 
-```bash
-$ npm install
-```
+### Prerequisites
 
-## Compile and run the project
+- Node.js (>=14.x.x)
+- MongoDB (>=4.x.x)
 
-```bash
-# development
-$ npm run start
+### Setup
 
-# watch mode
-$ npm run start:dev
+1. **Clone the Repository:**
 
-# production mode
-$ npm run start:prod
-```
+   ```bash
+   git clone https://github.com/yourusername/your-repository.git
+   cd your-repository
+   ```
 
-## Run tests
+2. **Install Dependencies:**
 
-```bash
-# unit tests
-$ npm run test
+   ```bash
+   npm install
+   ```
 
-# e2e tests
-$ npm run test:e2e
+3. **Configuration:**
 
-# test coverage
-$ npm run test:cov
-```
+   Create a `.env` file in the root directory of the project with the following content:
 
-## Resources
+   ```env
+   MONGO_URI=mongodb+srv://<user>:<db_password>@<cluster>.<account>.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+   RABBITMQ_URI=amqp://id.cloudamqp:5672 amqps://<user>:<db_password>@<cluster>.<account>.cloudamqp.com/<user>
+   SFTP_EMAIL=something@ethereal.email
+   SFTP_PASSWORD=your-ethereal-password
+   SFTP_HOST=smtp.ethereal.email
+   SFTP_PORT=587
+   ```
 
-Check out a few resources that may come in handy when working with NestJS:
+4. **Run the Application:**
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+   ```bash
+   npm run start
+   ```
 
-## Support
+5. **Run Tests:**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   To ensure everything is working correctly, run the tests:
 
-## Stay in touch
+   ```bash
+   npm test
+   ```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Documentation
 
-## License
+API documentation is available in the `open-api.json` file located in the root directory of the project. This file describes the API endpoints, request and response formats, and other details.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Contact
+
+For any questions or feedback, please contact [h2rashwan@gmail.com](mailto:h2rashwan@gmail.com).
+
