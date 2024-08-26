@@ -87,20 +87,20 @@ Here are some screenshots demonstrating the working functionality of SFTP , Rabb
 
 ### SFTP
 
-![SFTP Screenshot](/screenshots/sftp.png)
+![SFTP Screenshot](screenshots/sftp.png)
 
 ### RabbitMQ
 
-![RabbitMQ Screenshot](/screenshots/rabbitmq.png)
+![RabbitMQ Screenshot](screenshots/rabbitmq.png)
 
 ### Mongo
 
-![SFTP Screenshot](/screenshots/sftp.png)
+![SFTP Screenshot](screenshots/sftp.png)
 
 ### MongoDB
 
-![MongoDB user Screenshot](/screenshots/mongodb_user.png)
-![MongoDB avatar Screenshot](/screenshots/mongodb_avatar.png)
+![MongoDB user Screenshot](screenshots/mongodb_user.png)
+![MongoDB avatar Screenshot](screenshots/mongodb_avatar.png)
 
 
 
