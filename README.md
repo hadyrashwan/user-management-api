@@ -83,7 +83,7 @@ API documentation is available in the `open-api.json` file located in the root d
 
 ## Screenshots
 
-Here are some screenshots demonstrating the working functionality of SFTP and RabbitMQ:
+Here are some screenshots demonstrating the working functionality of SFTP , RabbitMQ and MongoDB:
 
 ### SFTP
 
@@ -92,6 +92,16 @@ Here are some screenshots demonstrating the working functionality of SFTP and Ra
 ### RabbitMQ
 
 ![RabbitMQ Screenshot](/screenshots/rabbitmq.png)
+
+### Mongo
+
+![SFTP Screenshot](/screenshots/sftp.png)
+
+### MongoDB
+
+![MongoDB user Screenshot](/screenshots/mongodb_user.png)
+![MongoDB avatar Screenshot](/screenshots/mongodb_avatar.png)
+
 
 
 ## Contact
