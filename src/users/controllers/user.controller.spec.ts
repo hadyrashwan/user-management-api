@@ -169,7 +169,7 @@ describe('UserController', () => {
 
       jest
         .spyOn(userAvatarService, 'deleteAvatar')
-        .mockRejectedValue(new Error('Avatar not found'));
+        .mockResolvedValue({ success: false });
 
       await expect(userController.deleteAvatar(userId)).rejects.toThrow();
     });

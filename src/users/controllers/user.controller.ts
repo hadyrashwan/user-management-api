@@ -89,7 +89,7 @@ export class UserController {
   @ApiResponse({ status: 404, description: 'Avatar not found.' })
   async deleteAvatar(@Param('userId') userId: string) {
     const response = await this.userAvatarService.deleteAvatar(userId);
-    if (response) {
+    if (response.success) {
       return { success: true, message: 'Avatar successfully deleted.' };
     } else {
       throw new NotFoundException('Avatar not found.');
