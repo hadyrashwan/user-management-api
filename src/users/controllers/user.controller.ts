@@ -6,6 +6,7 @@ import {
   Body,
   Delete,
   NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -49,7 +50,19 @@ export class UserController {
   })
   @ApiResponse({ status: 404, description: 'User not found.' })
   async findOne(@Param('userId') userId: number) {
-    return this.userService.findOne(userId);
+    try {
+      const response = await this.userService.findOne(userId);
+      if (!response.id) {
+        throw new NotFoundException();
+      }
+      return response;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        throw new NotFoundException('User not found');
+      }
+
+      throw new BadRequestException(error);
+    }
   }
 
   @Get(':userId/avatar')

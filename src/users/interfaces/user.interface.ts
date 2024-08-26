@@ -7,7 +7,7 @@ export interface IUser {
 }
 
 export interface IUserAvatar {
-  readonly id: string;
+  readonly userId: number;
   readonly hash: string;
   readonly imagePath: string;
   readonly image: Buffer;

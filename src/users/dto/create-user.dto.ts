@@ -9,6 +9,8 @@ export class CreateUserDto {
   @IsEmail()
   readonly email: string;
 
+  readonly id?: number;
+
   @ApiProperty({
     description: 'The first name of the user',
     example: 'John',

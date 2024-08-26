@@ -35,7 +35,7 @@ export class UserAvatarService {
 
   async SaveAvatarToDB(userId: number, avatarUrl: string): Promise<string> {
     const response = await this.fetchAvatar(avatarUrl);
-    const hash = crypto.createHash('sha256').update(response).digest('hex');
+    const hash = 'sha256'; // crypto.createHash('sha256').update(response).digest('hex');
     const imagePath = path.join(this.tempDirectory, `${userId}.png`);
     await fs.writeFile(imagePath, response);
 

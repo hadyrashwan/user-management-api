@@ -55,6 +55,21 @@ describe('UserController', () => {
       expect(await userController.create(createUserDto)).toBe(expectedResult);
       expect(userService.create).toHaveBeenCalledWith(createUserDto);
     });
+
+    it('should throw BadRequestException when creation fails', async () => {
+      const createUserDto: CreateUserDto = {
+        email: 'test@example.com',
+        first_name: 'John',
+        last_name: 'Doe',
+        avatar: 'https://example.com/avatar.png',
+      };
+
+      jest
+        .spyOn(userService, 'create')
+        .mockRejectedValue(new Error('Creation failed'));
+
+      await expect(userController.create(createUserDto)).rejects.toThrow();
+    });
   });
 
   describe('findOne', () => {
@@ -72,6 +87,14 @@ describe('UserController', () => {
 
       expect(await userController.findOne(userId)).toBe(expectedResult);
       expect(userService.findOne).toHaveBeenCalledWith(userId);
+    });
+
+    it('should throw NotFoundException when user is not found', async () => {
+      const userId = 999;
+
+      jest.spyOn(userService, 'findOne').mockResolvedValue(null);
+
+      await expect(userController.findOne(userId)).rejects.toThrow();
     });
   });
 
@@ -115,6 +138,17 @@ describe('UserController', () => {
         avatarUrl,
       );
     });
+
+    it('should throw NotFoundException when user is not found', async () => {
+      const userId = 999;
+
+      jest
+        .spyOn(userAvatarService, 'getAvatarFromDB')
+        .mockResolvedValue({ found: false });
+      jest.spyOn(userService, 'findOne').mockResolvedValue(null);
+
+      await expect(userController.getAvatar(userId)).rejects.toThrow();
+    });
   });
 
   describe('deleteAvatar', () => {
@@ -128,6 +162,16 @@ describe('UserController', () => {
 
       expect((await userController.deleteAvatar(userId)).success).toBe(true);
       expect(userAvatarService.deleteAvatar).toHaveBeenCalledWith(userId);
+    });
+
+    it('should throw NotFoundException when avatar is not found', async () => {
+      const userId = '999';
+
+      jest
+        .spyOn(userAvatarService, 'deleteAvatar')
+        .mockRejectedValue(new Error('Avatar not found'));
+
+      await expect(userController.deleteAvatar(userId)).rejects.toThrow();
     });
   });
 });

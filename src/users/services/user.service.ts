@@ -21,9 +21,13 @@ export class UserService {
     @Inject('RABBITMQ_CHANNEL') private readonly channelWrapper: ChannelWrapper,
   ) {}
 
+  private createModel(createUserDto: CreateUserDto) {
+    return new this.userModel(createUserDto);
+  }
+
   async create(createUserDto: CreateUserDto): Promise<IUser> {
     const id = await this.createInReqres(createUserDto);
-    const createdUser = new this.userModel({ ...createUserDto, id });
+    const createdUser = this.createModel({ ...createUserDto, id });
     const user = await createdUser.save();
 
     this.sendEmail(user.email);
