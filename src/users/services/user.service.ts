@@ -51,16 +51,16 @@ export class UserService {
 
   private async sendEmail(email: string) {
     const transporter = nodemailer.createTransport({
-      host: process.env.SFTP_HOST,
-      port: process.env.SFTP_PORT,
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
       auth: {
-        user: process.env.SFTP_EMAIL,
-        pass: process.env.SFTP_PASSWORD,
+        user: process.env.SMTP_EMAIL,
+        pass: process.env.SMTP_PASSWORD,
       },
     });
 
     await transporter.sendMail({
-      from: process.env.SFTP_EMAIL,
+      from: process.env.SMTP_EMAIL,
       to: email,
       subject: 'Welcome to User Management API',
       text: 'User created successfully.',

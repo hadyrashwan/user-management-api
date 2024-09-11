@@ -134,7 +134,7 @@ describe('UserService', () => {
       await service['sendEmail']('test@example.com');
 
       expect(mockTransporter.sendMail).toHaveBeenCalledWith({
-        from: process.env.SFTP_EMAIL,
+        from: process.env.SMTP_EMAIL,
         to: 'test@example.com',
         subject: 'Welcome to User Management API',
         text: 'User created successfully.',

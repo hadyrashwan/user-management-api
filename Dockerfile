@@ -25,10 +25,10 @@ EXPOSE 3000
 # Set environment variables (can be overridden at runtime)
 ENV MONGO_URI=mongodb+srv://<user>:<db_password>@<cluster>.<account>.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 ENV RABBITMQ_URI=amqp://localhost:5672
-ENV SFTP_EMAIL=something@ethereal.email
-ENV SFTP_PASSWORD=your-ethereal-password
-ENV SFTP_HOST=smtp.ethereal.email
-ENV SFTP_PORT=587
+ENV SMTP_EMAIL=something@ethereal.email
+ENV SMTP_PASSWORD=your-ethereal-password
+ENV SMTP_HOST=smtp.ethereal.email
+ENV SMTP_PORT=587
 
 # Command to run the application
 CMD ["npm", "run", "start:prod"]

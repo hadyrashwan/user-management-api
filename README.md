@@ -40,10 +40,10 @@ The User Management API is a NestJS-based service designed for managing user ava
    ```env
    MONGO_URI=mongodb+srv://<user>:<db_password>@<cluster>.<account>.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
    RABBITMQ_URI=amqp://id.cloudamqp:5672 amqps://<user>:<db_password>@<cluster>.<account>.cloudamqp.com/<user>
-   SFTP_EMAIL=something@ethereal.email
-   SFTP_PASSWORD=your-ethereal-password
-   SFTP_HOST=smtp.ethereal.email
-   SFTP_PORT=587
+   SMTP_EMAIL=something@ethereal.email
+   SMTP_PASSWORD=your-ethereal-password
+   SMTP_HOST=smtp.ethereal.email
+   SMTP_PORT=587
    ```
 
 4. **Run the Application:**
@@ -83,11 +83,11 @@ API documentation is available in the `open-api.json` file located in the root d
 
 ## Screenshots
 
-Here are some screenshots demonstrating the working functionality of SFTP , RabbitMQ and MongoDB:
+Here are some screenshots demonstrating the working functionality of SMTP , RabbitMQ and MongoDB:
 
-### SFTP
+### SMTP
 
-![SFTP Screenshot](screenshots/sftp.png)
+![SMTP Screenshot](screenshots/sftp.png)
 
 ### RabbitMQ
 
@@ -95,7 +95,7 @@ Here are some screenshots demonstrating the working functionality of SFTP , Rabb
 
 ### Mongo
 
-![SFTP Screenshot](screenshots/sftp.png)
+![SMTP Screenshot](screenshots/sftp.png)
 
 ### MongoDB
 
